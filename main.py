@@ -85,7 +85,14 @@ def get_hoa_don(username="nghiais009", password="15091994",tuThang='1', tuNam='2
     print(f"Ket qua hoa don thang {tuThang} - nam {tuNam}")
     #print(data2)
     jsondata = {}
-    #print(type(data2))
+        
+    dataid = json.loads(data2)[0]
+    rsp = get_file(tokeni,strMaKH, tuNam, tuThang , dataid['lId_HDon'])
+    jsondata['result'] = "OK"
+    jsondata['msg'] = f"Hoa Don Thang {tuThang} - {tuNam} Ghi File Thanh Cong"
+    jsondata['path']= rsp
+    jsondata['id_hoadon']=dataid['lId_HDon']
+    '''
     try:
         dataid = json.loads(data2)[0]
         rsp = get_file(tokeni,strMaKH, tuNam, tuThang , dataid['lId_HDon'])
@@ -93,11 +100,13 @@ def get_hoa_don(username="nghiais009", password="15091994",tuThang='1', tuNam='2
         jsondata['msg'] = f"Hoa Don Thang {tuThang} - {tuNam} Ghi File Thanh Cong"
         jsondata['path']= rsp
         jsondata['id_hoadon']=dataid['lId_HDon']
-    except:
+    except Exception as ex:
+        print(ex)
         jsondata['result'] = "ERROR"
-        jsondata['msg'] = "Username Or PassWord Or Data Input NG"
+        jsondata['msg'] = 'Exception'
         jsondata['id_hoadon']='NOT FOUND'
         jsondata['path']= f'Hoa Don Thang {tuThang} - {tuNam} Khong The Lay Data'
+    '''
     print("########### End get_hoa_don ###########")
     #print(jsondata[0])
     #xml =  dicttoxml(jsondata)
