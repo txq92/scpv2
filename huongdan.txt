@@ -1,0 +1,52 @@
+#################################################################
+#########     DOCKER SETUP                              #########
+#################################################################
+Chạy docker - compose tren linux
+1. cai dat docker , docker compose tren sever linux (HOST_LINUX)
+
+2. cd den thu muc evnscp
+run lenh:
+> sudo docker compose up -d
+
+3. test api
+curl -i -X POST \
+   -H "Content-Type:application/json" \
+   -d \
+'{
+  "username":"nghiais009",
+  "password":"15091994",
+  "fromMonth":"2",
+  "FromYear":"2023",
+  "isXml":false
+}' \
+ 'http://HOST_LINUX:50000/evnscp'
+=================================================================
+#################################################################
+###          LOCAL SETUP                                #########
+#################################################################
+
+1. cai dat python
+> mkdir myproject
+> cd myproject
+> py -3 -m venv venv
+> venv\Scripts\activate
+> pip freeze > requirements.txt
+
+2. cai dat phu thuoc
+pip install -r requirements.txt
+
+3. chay sever local
+python app.py
+
+4. run api
+curl -i -X POST \
+   -H "Content-Type:application/json" \
+   -d \
+'{
+  "username":"nghiais009",
+  "password":"15091994",
+  "fromMonth":"2",
+  "FromYear":"2023",
+  "isXml":false
+}' \
+ 'http://127.0.0.1:50000/evnscp'
