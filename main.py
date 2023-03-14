@@ -50,9 +50,11 @@ def get_file(tokeni='xx', makkh='PB09010005862', nam='2023', thang='1' , idhd='1
 
     ####dich
     toopath = os.path.dirname(os.path.abspath(__file__))+'/store_data/'+ namefomat + '.xml'
+
     print(toopath)
+
     #move to foder store
-    shutil.move('ChuKy.xml', os.path.join('store_data',f'{namefomat}.xml'))
+    shutil.move('ChuKy.xml', toopath)
 
     print(f"Downloading Completed : {toopath}")
     return toopath
